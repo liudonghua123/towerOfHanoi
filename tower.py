@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import random, pdb, time
-from Tkinter import *
+from tkinter import *
 
 global time_of_sleep;
 time_of_sleep = 1; # time in seconds for next Animation... YOU CAN CHANGE IT as per YOUR convenience ;)
@@ -27,7 +27,7 @@ class visual_tower:
 		self.myGui.update();
 		self.myGui.quit();
 	def showit(self):
-		w=range(self._n);
+		w=list(range(self._n));
 		for f in range(4):
 			w_tmp = Canvas(self.Frames[f], width=(self._n)*25, height=26);
 			w_tmp.grid(row=self._n,column=0,columnspan=(self._n+1));
@@ -66,10 +66,10 @@ class stack:
 			self.stk.append(elem);
 			self._size=self._size+1;
 		else :
-			print "This Operation is Invalid in Tower's of Hanoi ;)"
+			print("This Operation is Invalid in Tower's of Hanoi ;)")
 	def printit(self):
 		for i in range(self._size-1,-1,-1):
-			print(self.stk[i]);
+			print((self.stk[i]));
 
 class hanoi:
 	def __init__(self,n):
@@ -95,35 +95,35 @@ def tower_of_hanoi(num_of_Disks, src,  inter1, inter2, dest):
 	global H,time_of_sleep;
 	time_of_sleep=1; # change it as per your convenience
 	if(num_of_Disks %2 == 1 and num_of_Disks < 2):
-		print "\nTransfer Disc from\n",src.name," >> TO >> ",dest.name;
+		print("\nTransfer Disc from\n",src.name," >> TO >> ",dest.name);
 		dest.push(src.pop());
 		H.displayit();
 
 	elif(num_of_Disks % 2==0 and num_of_Disks < 3):
-		print "\nTransfer Disc from\n",src.name," >> TO >> ",inter1.name;
+		print("\nTransfer Disc from\n",src.name," >> TO >> ",inter1.name);
 		inter1.push(src.pop());
 		H.displayit();
-		print "\nTransfer Disc from\n",src.name," >> TO >> ",dest.name;
+		print("\nTransfer Disc from\n",src.name," >> TO >> ",dest.name);
 		dest.push(src.pop());
 		H.displayit();
-		print "\nTransfer Disc from\n",inter1.name," >> TO >> ", dest.name;
+		print("\nTransfer Disc from\n",inter1.name," >> TO >> ", dest.name);
 		dest.push(inter1.pop());
 		H.displayit();
 	else:
 		tower_of_hanoi(num_of_Disks-2,src,inter2,dest,inter1);
-		print "\nTransfer Disc from\n",src.name, " >> TO >> ", inter2.name;
+		print("\nTransfer Disc from\n",src.name, " >> TO >> ", inter2.name);
 		inter2.push(src.pop());
 		H.displayit();
-		print "\nTransfer Disc from\n",src.name, " >> TO >> ", dest.name;
+		print("\nTransfer Disc from\n",src.name, " >> TO >> ", dest.name);
 		dest.push(src.pop());
 		H.displayit();
-		print "\nTransfer Disc from\n",inter2.name, " >> TO >> ", dest.name;
+		print("\nTransfer Disc from\n",inter2.name, " >> TO >> ", dest.name);
 		dest.push(inter2.pop());
 		H.displayit();
 		tower_of_hanoi(num_of_Disks-2,inter1,src,inter2,dest);
 
 def main():
-	n=input("No. Of Disks : "); # no. of disks
+	n=eval(input("No. Of Disks : ")); # no. of disks
 	global H;
 	H = hanoi(n);
 	tower_of_hanoi(n,H.p1,H.p2,H.p3,H.p4);
